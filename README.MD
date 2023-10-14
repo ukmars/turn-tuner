@@ -144,6 +144,7 @@ computer and set up in the path so that you can just run the command `python tur
 (You might need `python3 turn-tuner.py` on your computer.) The application should run with no other Python 
 dependencies. If you want the icon image to show up. Make sure the turn-tuner.png file is in the same directory.
 It should look like this:
+
 ![application.png](application.png)
 
 The application should, I hope, need little explanation. You can select your turn type and mess with the four 
