@@ -361,16 +361,18 @@ class Robot:
     def __init__(self, canvas):
         self.canvas = canvas
         self.pose = Pose()
+        #triangle
         self.vertices = [[0, 63], [36, 0], [-36, 0], [0, 63]]
+        # ukmarsbot
+        self.vertices = [[0, 63], [30,63],[40,50],[40,-35],[-40,-35],[-40,50],[-30,63],[0,63]]
 
     def set_pose(self, pose):
         self.pose = pose
 
     def draw(self, origin_x, origin_y):
         points = rotate(self.vertices, self.pose.angle, (0, 0))
-        points = scale(points, 0.25)
+        # points = scale(points, 0.25)
         points = translate(points, self.pose.x + origin_x, self.pose.y + origin_y)
-        # self.draw_polygon(self.canvas, points)
         self.canvas.create_polygon(points, outline='white', fill='', width=2)
 
 
