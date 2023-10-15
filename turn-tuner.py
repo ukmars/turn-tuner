@@ -448,7 +448,7 @@ class TurnProfile:
 
     def draw(self,canvas, color = 'yellow'):
         colors = ['green', 'yellow', 'red', 'blue']
-        for point in self.pose:
+        for point in self.pose[::4]:
             x = point.x + canvas.origin_x()
             y = point.y + canvas.origin_y()
             color = colors[point.phase]
