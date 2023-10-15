@@ -129,15 +129,12 @@ class Application(tk.Tk):
 
         self.maze_frame.maze_view.clear()
         self.profile.draw(self.maze_frame.maze_view)
-        angle = self.current_params.start_angle
-        offset = self.current_params.offset
-        robot_x = self.current_params.pivot_x + offset * math.sin(math.radians(angle))
-        robot_y = self.current_params.pivot_y - offset * math.cos(math.radians(angle))
-        self.robot.set_pose(Pose(robot_x, robot_y, angle))
+        # put the robot somewhere on the trajectory
+        progress = self.maze_frame.progress_slider.get()
+        index = int(progress*(len(self.profile.pose)-1)/100)
+        pose = self.profile.pose[index]
+        self.robot.set_pose(pose)
         self.robot.draw(self.maze_frame.maze_view.origin_x(),self.maze_frame.maze_view.origin_y())
-
-        print('updated ' + self.current_turn)
-        # print(self.current_params)
 
 
 class TurnSelector(tk.LabelFrame):
@@ -243,6 +240,7 @@ class Settings(tk.LabelFrame):
 class MazeFrame(tk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
+        self.parent = parent
         self.configure(background='black')
         self.turn_name = tk.StringVar(value='----')
         lbl_name = ttk.Label(self,
@@ -252,6 +250,11 @@ class MazeFrame(tk.Frame):
         lbl_name.pack(side='top')
         self.maze_view = MazeView(self)
         self.pack(side='top', expand=False, fill='both', padx=5, pady=5)
+        self.progress_slider = tk.Scale(self, showvalue=0,orient='horizontal',command=self.refresh)
+        self.progress_slider.pack(side = 'bottom', expand = 'True',fill = 'x')
+    
+    def refresh(self,progress):
+        self.parent.refresh()
 
 
 class MazeView(tk.Canvas):
