@@ -134,7 +134,14 @@ class Application(tk.Tk):
         index = int(progress*(len(self.profile.pose)-1)/100)
         pose = self.profile.pose[index]
         self.robot.set_pose(pose)
-        self.robot.draw(self.maze_frame.maze_view.origin_x(),self.maze_frame.maze_view.origin_y())
+        origin_x = self.maze_frame.maze_view.origin_x()
+        origin_y = self.maze_frame.maze_view.origin_y()
+        self.robot.draw(origin_x,origin_y)
+        # show the pivot point
+        px = self.current_params.pivot_x + origin_x
+        py = self.current_params.pivot_y + origin_y
+        self.maze_frame.maze_view.draw_pivot(px,py)
+
 
 
 class TurnSelector(tk.LabelFrame):
@@ -277,6 +284,10 @@ class MazeView(tk.Canvas):
         self.delete('all')
         self.draw_maze()
 
+    def draw_pivot(self,px,py):
+        super().create_line(px-5,py-5,px+5,py+5,fill='yellow')
+        super().create_line(px-5,py+5,px+5,py-5,fill ='yellow')
+
     def draw_maze(self):
         top = self.top
         left = self.left
@@ -306,7 +317,6 @@ class MazeView(tk.Canvas):
         super().create_line(x2, y1, x2, y2, fill='red2', dash=(4, 2), )
         super().create_line(x1, y2, x2, y2, fill='red2', dash=(4, 2), )
 
-    pass
 
 
 @dataclass
