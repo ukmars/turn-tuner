@@ -311,16 +311,16 @@ class MazeView(tk.Canvas):
                 y1 = top + 90 * y + w / 2
                 x2 = x1 + 90
                 y2 = y1 + 90
-                super().create_line(x1, y1, x2, y2, fill='red4', dash=(4, 2), )
-                super().create_line(x2, y1, x1, y2, fill='red4', dash=(4, 2), )
-                super().create_line(x1, y1, x2, y1, fill='red2', dash=(4, 2), )
-                super().create_line(x1, y1, x1, y2, fill='red2', dash=(4, 2), )
+                super().create_line(x1, y1, x2, y2, fill='brown4', dash=(4, 2), )
+                super().create_line(x2, y1, x1, y2, fill='brown4', dash=(4, 2), )
+                super().create_line(x1, y1, x2, y1, fill='brown4', dash=(4, 2), )
+                super().create_line(x1, y1, x1, y2, fill='brown4', dash=(4, 2), )
         x1 = left + w / 2
         x2 = x1 + 2 * 180
         y1 = top + w / 2
         y2 = y1 + 2 * 180
-        super().create_line(x2, y1, x2, y2, fill='red2', dash=(4, 2), )
-        super().create_line(x1, y2, x2, y2, fill='red2', dash=(4, 2), )
+        super().create_line(x2, y1, x2, y2, fill='brown4', dash=(4, 2), )
+        super().create_line(x1, y2, x2, y2, fill='brown4', dash=(4, 2), )
 
 
 
