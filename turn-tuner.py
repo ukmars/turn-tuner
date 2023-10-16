@@ -469,7 +469,7 @@ class TurnProfile:
         return (arc_omega, alpha, t3, max_available_speed)
 
     def draw(self,canvas, color = 'yellow'):
-        colors = ['green', 'yellow', 'red', 'blue']
+        colors = ['cyan', 'yellow',  'cyan']
         for point in self.pose[::4]:
             x = point.x + canvas.origin_x()
             y = point.y + canvas.origin_y()
