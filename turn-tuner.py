@@ -379,19 +379,23 @@ class Robot:
     def __init__(self, canvas):
         self.canvas = canvas
         self.pose = Pose()
-        #triangle
-        self.vertices = [[0, 63], [36, 0], [-36, 0], [0, 63]]
         # ukmarsbot
-        self.vertices = [[0, 63], [30,63],[40,50],[40,-35],[-40,-35],[-40,50],[-30,63],[0,63]]
+        self.outline = [[0, 63], [30,63],[40,50],[40,-35],[-40,-35],[-40,50],[-30,63],[0,63]]
+        self.axes = [[0,63],[0,-35],[-40,0],[40,0]]
 
     def set_pose(self, pose):
         self.pose = pose
 
     def draw(self, origin_x, origin_y):
-        points = rotate(self.vertices, self.pose.angle, (0, 0))
+        outline = rotate(self.outline, self.pose.angle, (0, 0))
+        axes = rotate(self.axes, self.pose.angle, (0, 0))
         # points = scale(points, 0.25)
-        points = translate(points, self.pose.x + origin_x, self.pose.y + origin_y)
-        self.canvas.create_polygon(points, outline='white', fill='', width=2)
+        outline = translate(outline, self.pose.x + origin_x, self.pose.y + origin_y)
+        axes = translate(axes, self.pose.x + origin_x, self.pose.y + origin_y)
+        colour = 'dark olive green'
+        self.canvas.create_polygon(outline, outline=colour, fill='', width=2)
+        self.canvas.create_line(axes[0][0],axes[0][1],axes[1][0],axes[1][1],fill='wheat3', dash=(4, 2))
+        self.canvas.create_line(axes[2][0],axes[2][1],axes[3][0],axes[3][1],fill='wheat3', dash=(4, 2))
 
 
 class TurnProfile:
