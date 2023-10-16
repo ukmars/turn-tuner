@@ -116,9 +116,10 @@ class Application(tk.Tk):
         # assuming max centripetal acceleration, how fast can we go?
         max_available_speed = math.sqrt(1234)
         MAX_CENTRIPETAL_ACC = 5000
-        self.settings.g_turn_speed_max.set(
-            F'MAX SPEED = {v_max:4.0f} mm/s \n(for {MAX_CENTRIPETAL_ACC:4.0f} mm/s/s acceleration)')
-        decl = '{TURN_SPEED, '
+        centripetal_acc = int(v_max * math.radians(omega))
+        # self.settings.g_turn_speed_max.set(
+        #     F'MAX SPEED = {v_max:4.0f} mm/s \n(for {MAX_CENTRIPETAL_ACC:4.0f} mm/s/s acceleration)')
+        self.settings.g_turn_speed_max.set(F"Cent'l Acc = {centripetal_acc:4d} mm/s/s")
         decl += F"{self.current_params.offset:3d}, "
         decl += F"{self.current_params.offset:3d}, "
         decl += F"{omega:4.1f}, "
