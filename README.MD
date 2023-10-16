@@ -2,7 +2,8 @@
 
 All turns in the mazerunner-core software are performed by executing a simple trapezoidal angular velocity profile. 
 In this repository you will find an explanation fo the turn behaviour, guidance on how to determine the key 
-parameters and a neat graphical tool to let you visualise those turns
+parameters and a neat graphical tool to let you visualise those turns. Note that this is an ideal simulation 
+and your robot may behave slightly differently. Use the resuls as a basis for further manual tuning.
 
 ![turn-profiles.png](turn-profiles.png)
 
@@ -15,7 +16,7 @@ The resulting curve is technically a clothoid. It has three phases.
 - Phase 3 is where the robot unwinds to straight motion again. Like phase 1, the rate of change is set by the angular 
   acceleration. The turn is symmetrical so phase 3 happens over the same distance as phase 1.
 
-In the diagram above, the path is shown with phases 1 and 2 in green and phase 2 in red.
+In the diagram above, the path is shown with phases 1 and 2 in cyan and phase 2 in yellow.
  
 You can choose the distance travelled during phase 1. In the code, this is referred to as the 'delta' for the turn. 
 
