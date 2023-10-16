@@ -475,7 +475,7 @@ class TurnProfile:
             x = point.x + canvas.origin_x()
             y = point.y + canvas.origin_y()
             color = colors[point.phase]
-            canvas.create_oval(x - 1, y - 1, x + 1, y + 1, outline=color)
+            canvas.create_oval(x - 2, y - 2, x + 2, y + 2, outline=color, fill=color)
 
 
 application = Application("UKMARSBOT Turn Tuner", (420, 720))
