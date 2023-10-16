@@ -120,6 +120,8 @@ class Application(tk.Tk):
         # self.settings.g_turn_speed_max.set(
         #     F'MAX SPEED = {v_max:4.0f} mm/s \n(for {MAX_CENTRIPETAL_ACC:4.0f} mm/s/s acceleration)')
         self.settings.g_turn_speed_max.set(F"Cent'l Acc = {centripetal_acc:4d} mm/s/s")
+        decl = '{'
+        decl += F"{self.settings.g_turn_speed.get()}, "
         decl += F"{self.current_params.offset:3d}, "
         decl += F"{self.current_params.offset:3d}, "
         decl += F"{omega:4.1f}, "
