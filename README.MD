@@ -16,7 +16,7 @@ The resulting curve is technically a clothoid. It has three phases.
 - Phase 3 is where the robot unwinds to straight motion again. Like phase 1, the rate of change is set by the angular 
   acceleration. The turn is symmetrical so phase 3 happens over the same distance as phase 1.
 
-In the diagram above, the path is shown with phases 1 and 2 in cyan and phase 2 in yellow.
+In the diagram above, the path is shown with phases 1 and 2 in blue and phase 2 in yellow.
  
 You can choose the distance travelled during phase 1. In the code, this is referred to as the 'delta' for the turn. 
 

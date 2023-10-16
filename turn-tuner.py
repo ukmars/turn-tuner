@@ -1,3 +1,4 @@
+#! /usr/bin/python
 import tkinter as tk
 from tkinter import ttk
 import math
@@ -469,7 +470,7 @@ class TurnProfile:
         return (arc_omega, alpha, t3, max_available_speed)
 
     def draw(self,canvas, color = 'yellow'):
-        colors = ['cyan', 'yellow',  'cyan']
+        colors = ['#0072b2', '#F0E442',  '#0072b2']
         for point in self.pose[::4]:
             x = point.x + canvas.origin_x()
             y = point.y + canvas.origin_y()
