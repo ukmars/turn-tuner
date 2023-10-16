@@ -59,6 +59,7 @@ class Application(tk.Tk):
         self.title(self.main_title)
         self.geometry(f'{size[0]}x{size[1]}')
         self.minsize(size[0], size[1])
+        self.maxsize(size[0], size[1])
         img = tk.PhotoImage(file='turn_setting.png')
         self.iconphoto(False, img)
         # parameters
