@@ -132,7 +132,6 @@ class Application(tk.Tk):
         self.c_declaration.set(decl)
 
         self.maze_frame.maze_view.clear()
-        self.profile.draw(self.maze_frame.maze_view)
         # put the robot somewhere on the trajectory
         progress = self.maze_frame.progress_slider.get()
         index = int(progress*(len(self.profile.pose)-1)/100)
@@ -141,6 +140,8 @@ class Application(tk.Tk):
         origin_x = self.maze_frame.maze_view.origin_x()
         origin_y = self.maze_frame.maze_view.origin_y()
         self.robot.draw(origin_x,origin_y)
+        # draw the trajectory
+        self.profile.draw(self.maze_frame.maze_view)
         # show the pivot point
         px = self.current_params.pivot_x + origin_x
         py = self.current_params.pivot_y + origin_y
