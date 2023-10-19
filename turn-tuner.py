@@ -98,7 +98,6 @@ class Application(tk.Tk):
         # work out which turn we are using
         self.current_turn = self.turn_selector.name.get()
         self.title(self.main_title + ' - ' + self.current_turn)
-        self.maze_frame.turn_name.set(self.current_turn)
         # print(self.current_params)
         global working_params
         working_params[self.current_turn].offset = self.settings.g_turn_offset.get()
@@ -255,12 +254,6 @@ class MazeFrame(tk.Frame):
         super().__init__(parent)
         self.parent = parent
         self.configure(background='black')
-        self.turn_name = tk.StringVar(value='----')
-        lbl_name = ttk.Label(self,
-                             foreground='yellow', background='black',
-                             textvariable=self.turn_name,
-                             )
-        lbl_name.pack(side='top')
         self.maze_view = MazeView(self)
         self.pack(side='top', expand=False, fill='both', padx=5, pady=5)
         self.progress_slider = tk.Scale(self, showvalue=0,orient='horizontal',command=self.refresh)
