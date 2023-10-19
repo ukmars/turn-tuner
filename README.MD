@@ -6,7 +6,7 @@ parameters and a neat graphical tool to let you visualise those turns. Note that
 and your robot may behave slightly differently. Use the resuls as a basis for further manual tuning.
 
 ![turn-profiles.png](turn-profiles.png)
-
+![Turn Trajectory](trajectory.png)
 The resulting curve is technically a clothoid. It has three phases. 
 - Phase 1 is where the robot transitions from straight to constant radius. During this phase, the angular velocity 
   increases linearly with time accordig to the angular acceleration. The magnitude of the angular acceleration is 
