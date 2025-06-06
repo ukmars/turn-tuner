@@ -110,6 +110,7 @@ class Application(tk.Tk):
         self.profile.set_radius(float(self.settings.g_turn_radius.get()))
         self.profile.set_delta(float(self.settings.g_turn_delta.get()))
         (omega, alpha, t3, v_max) = self.profile.calculate()
+        #self.settings.g_turn_alpha_input.set(alpha)
         self.settings.g_turn_omega.set(F'OMEGA = {omega:5.1f} deg/s')
         self.settings.g_turn_alpha.set(F'ALPHA = {alpha:6.1f} deg/s/s')
         self.settings.g_turn_time.set(F'TIME = {t3:5.3f} s')
@@ -120,6 +121,9 @@ class Application(tk.Tk):
         # self.settings.g_turn_speed_max.set(
         #     F'MAX SPEED = {v_max:4.0f} mm/s \n(for {MAX_CENTRIPETAL_ACC:4.0f} mm/s/s acceleration)')
         self.settings.g_turn_speed_max.set(F"Cent'l Acc = {centripetal_acc:4d} mm/s/s")
+        pastCellBoundry = (90 - working_params[self.current_turn].offset)
+        thresholdDist = 180-6-(pastCellBoundry + 58) # cell distance minu half wall width - where front of robot is
+        self.settings.g_threshold_dist.set(F'Robot front to wall @ start = {thresholdDist:3d} mm\nUse to set TRIGGER')
         decl = '{'
         decl += F"{self.settings.g_turn_speed.get()}, "
         decl += F"{self.current_params.offset:3d}, "
@@ -195,22 +199,29 @@ class Settings(tk.LabelFrame):
         self.g_turn_delta = tk.IntVar(value=36)
         self.g_turn_offset = tk.IntVar(value=75)
         self.g_speed_max = tk.IntVar(value=800)
+        #self.g_turn_alpha_input = tk.IntVar(value=1000)
+        
+
         # outputs
         self.g_turn_omega = tk.StringVar(value='-')
         self.g_turn_alpha = tk.StringVar(value='-')
         self.g_turn_time = tk.StringVar(value='-')
         self.g_turn_speed_max = tk.StringVar(value='-')
+        self.g_threshold_dist = tk.StringVar(value='-')
+
 
         self.add_spin_box('Speed (mm/s):', self.g_turn_speed, 100, 2000, 10)
         self.add_spin_box('Arc Radius (mm):', self.g_turn_radius, 10, 200, 1)
         self.add_spin_box('Delta (mm):', self.g_turn_delta, 5, 200, 1)
         self.add_spin_box('Start Offset (mm):', self.g_turn_offset, 10, 200, 1)
+        #self.add_spin_box('Alpha (deg/s²):', self.g_turn_alpha_input, 1000, 10000, 100)
 
         self.add_separator()
         lb_omega = self.add_output('ppp', self.g_turn_omega)
         lb_alpha = self.add_output('ppp', self.g_turn_alpha)
         lb_time = self.add_output('ppp', self.g_turn_time)
         lb_speed_max = self.add_output('ppp', self.g_turn_speed_max)
+        lb_threshold_dist = self.add_output('ppp', self.g_threshold_dist)
 
     def add_spin_box(self, lbl, var, min_val, max_val, inc):
         lb = ttk.Label(self, text=lbl)
@@ -471,4 +482,4 @@ class TurnProfile:
             canvas.create_oval(x - 2, y - 2, x + 2, y + 2, outline=color, fill=color)
 
 
-application = Application("UKMARSBOT Turn Tuner", (420, 720))
+application = Application("UKMARSBOT Turn Tuner", (420, 800))

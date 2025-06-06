@@ -16,7 +16,7 @@ The resulting curve is technically a clothoid. It has three phases.
 - Phase 3 is where the robot unwinds to straight motion again. Like phase 1, the rate of change is set by the angular 
   acceleration. The turn is symmetrical so phase 3 happens over the same distance as phase 1.
 
-In the diagram above, the path is shown with phases 1 and 2 in blue and phase 2 in yellow.
+In the diagram above, the path is shown with phases 1 and 3 in blue and phase 2 in yellow.
  
 You can choose the distance travelled during phase 1. In the code, this is referred to as the 'delta' for the turn. 
 
@@ -28,7 +28,7 @@ smaller radius to fit the turn in.
 When choosing a value for delta, you must take care that it is not too long because the angle turned during phase 1 
 and phase 2 cannot exceed the total angle for the turn. I will try and remember always to talk about the '__arc 
 radius__' 
-when I mean the radius during phase 2 and  the '__effective radius__' when I am referring to the start and end 
+when I mean the radius during phase 2 and the '__effective radius__' when I am referring to the start and end 
 points of the curve.
 
 Note that the existence of these entry and exit phases means that the effective radius of the curve is always greater than the actual radius of the middle phase.
@@ -42,7 +42,7 @@ in a variety of ways. There is no universally 'correct' solution and choosing th
 part of the development of better performance. It should be clear that you will want to be able to run any given 
 turn at a variety of speeds. If you experiment enough, it is also clear that the variables in the equations depend 
 upon the speed of the robot. That is, for a given turn, things like the angular acceleration and maximum angular 
-velocity will be dependent upon speed. It will also soon become clear that you do'nt want to have to design from 
+velocity will be dependent upon speed. It will also soon become clear that you don't want to have to design from 
 scratch each 
 turn at all foreseeable speeds. 
 
@@ -62,7 +62,7 @@ off-by-one loops. In these cases, you might find it necessary to apply small cor
 89.7 degrees and a right turn 90.1 degrees rather than the expected exact value.
 
 - ### speed
-You will want to run the turns as fast as you can but there is one uge constraint that will limit how fast you can 
+You will want to run the turns as fast as you can but there is one huge constraint that will limit how fast you can 
 go. That is the radius of the phase 2 arc. The limit is most likely due to slip caused by large centripetal forces. 
 These forces are proportional to the _square_ of the speed and inversely proportional to the radius:
 
